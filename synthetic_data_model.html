@@ -7648,12 +7648,16 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Synthetic-Data-Generation-Workflow">Synthetic Data Generation Workflow<a class="anchor-link" href="#Synthetic-Data-Generation-Workflow">¶</a></h3><p>The synthetic bioimpedance dataset was generated through a step-by-step process designed to simulate realistic physiological behavior.</p>
-<p>First, a time variable was created to represent continuous sensor recording. A hydration event was then defined to simulate when water intake occurs.</p>
-<p>Based on this event, a hydration state was assigned, distinguishing between dehydrated and hydrated phases.</p>
-<p>Next, baseline bioimpedance values were generated, starting at a higher level during dehydration. A gradual decrease in bioimpedance was then applied after the hydration event to reflect the physiological effect of increased body water.</p>
-<p>To improve realism, controlled random noise was added to simulate variability in sensor measurements.</p>
-<p>The final dataset was constructed by combining time, bioimpedance, and hydration state, which was then used for visualization and machine learning analysis.</p>
+<h3 id="Synthetic-Data-Generation-Workflow">Synthetic Data Generation Workflow<a class="anchor-link" href="#Synthetic-Data-Generation-Workflow">¶</a></h3><p>The synthetic bioimpedance dataset was generated through a structured process designed to simulate realistic physiological behavior over time.</p>
+<p>A time variable (<code>time_s</code>) was created to represent continuous sensor recording. A hydration event was defined at a specific time point (<code>water_intake_time = 250</code>), representing when water intake occurs.</p>
+<p>Based on this event, a hydration state was assigned:</p>
+<ul>
+<li>0 = dehydrated (before water intake)</li>
+<li>1 = hydrated (after water intake)</li>
+</ul>
+<p>Baseline bioimpedance values were initialized at a higher level during dehydration and modeled to gradually decrease over time. After the hydration event, an additional non-linear decrease was applied to reflect the physiological effect of increased body water.</p>
+<p>To improve realism, controlled random noise was added to simulate natural variability in sensor measurements.</p>
+<p>The final dataset combines time, bioimpedance, and hydration state, and is used for both visualization and machine learning analysis.</p>
 </div>
 </div>
 </div>
@@ -7703,26 +7707,11 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Interpretation-of-the-Bioimpedance-Trend">Interpretation of the Bioimpedance Trend<a class="anchor-link" href="#Interpretation-of-the-Bioimpedance-Trend">¶</a></h3><p>The synthetic bioimpedance signal was designed to begin at a higher level during the dehydrated phase and then decrease gradually after the simulated water intake event. This reflects the expected physiological relationship between hydration and bioimpedance, where increased body water leads to lower electrical resistance.</p>
-<p>The decrease in BioZ follows a gradual, non-linear trend rather than a perfectly linear or exponential curve, which better reflects how physiological changes in body hydration occur over time.</p>
-<p>This behavior is based on the principle that increased body water improves electrical conductivity, resulting in lower impedance values.</p>
-<p>The synthetic signal includes a gradual transition and controlled noise to simulate realistic sensor variability observed in physiological data. This helps the synthetic data resemble a real physiological signal rather than an idealized step change.</p>
-<p>The purpose of this plot is to show the overall pattern and trend in bioimpedance over time, not to represent exact measured values. In this synthetic dataset, the main goal is to demonstrate that hydration-related changes in bioimpedance can be modeled in a controlled way.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Understanding-Plot-Signal-Shape-of-the-Bioimpedance-Trend">Understanding Plot Signal Shape of the Bioimpedance Trend<a class="anchor-link" href="#Understanding-Plot-Signal-Shape-of-the-Bioimpedance-Trend">¶</a></h3><p>The change in bioimpedance over time does not follow a perfectly linear or exponential mathematical pattern, but instead reflects a gradual, non-linear physiological response.</p>
-<p>A linear trend would show a constant rate of decrease, resulting in a straight line. In contrast, an exponential decay curve would show a very rapid drop immediately after the hydration event, followed by a quick flattening of the curve.</p>
-<p>In this synthetic dataset, the bioimpedance signal instead follows a gradual, non-linear decrease. This reflects a more realistic physiological response, where changes in body hydration occur progressively rather than instantaneously.</p>
-<p>The inclusion of controlled noise further ensures that the signal does not appear overly smooth or idealized, making it more representative of real-world sensor data.</p>
-<p>This approach emphasizes modeling realistic physiological behavior rather than fitting the signal to an idealized mathematical function.</p>
+<h2 id="Interpretation-of-the-Bioimpedance-Trend">Interpretation of the Bioimpedance Trend<a class="anchor-link" href="#Interpretation-of-the-Bioimpedance-Trend">¶</a></h2><p>The synthetic bioimpedance signal begins at a higher level during the dehydrated phase and gradually decreases after the simulated water intake event.</p>
+<p>This trend reflects a key physiological principle: <code>increased body water improves electrical conductivity, resulting in lower bioimpedance values</code>.</p>
+<p>The transition is <code>gradual and non-linear</code> rather than an abrupt drop. This better represents real biological systems, where hydration changes occur progressively over time rather than instantaneously.</p>
+<p>Additionally, random noise was included in the signal to mimic real-world sensor variability, making the data more realistic and less artificially smooth.</p>
+<p>Overall, the plot demonstrates a clear downward trend in bioimpedance following hydration, consistent with expected physiological behavior.</p>
 </div>
 </div>
 </div>
@@ -7769,9 +7758,10 @@ Percent change (%): 3.417692964054484
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Quantitative-Analysis-of-Bioimpedance-Values">Quantitative Analysis of Bioimpedance Values<a class="anchor-link" href="#Quantitative-Analysis-of-Bioimpedance-Values">¶</a></h3><p>To further understand the change in bioimpedance, summary statistics were calculated before and after the simulated hydration event.</p>
-<p>The average bioimpedance value decreased after hydration, confirming the downward trend observed in the plot. This numerical difference supports the interpretation that increased body water leads to lower electrical resistance.</p>
-<p>The percent change provides an additional measure of how significant the shift is, demonstrating that the model captures a measurable difference between dehydrated and hydrated states.</p>
+<h2 id="Quantitative-Analysis-of-Bioimpedance-Values">Quantitative Analysis of Bioimpedance Values<a class="anchor-link" href="#Quantitative-Analysis-of-Bioimpedance-Values">¶</a></h2><p>To further analyze the effect of hydration, summary statistics were computed before and after the simulated water intake event.</p>
+<p>The average bioimpedance before hydration (dehydrated state) was higher than the average after hydration (hydrated state). This confirms the downward trend observed in the visualization.</p>
+<p>The difference in means quantifies the magnitude of change in bioimpedance, while the percent change provides a normalized measure of how significant the shift is.</p>
+<p>These results support the conclusion that hydration leads to a measurable decrease in bioimpedance.</p>
 </div>
 </div>
 </div>
@@ -7896,16 +7886,14 @@ weighted avg       0.98      0.98      0.98       100
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Synthetic-Data-Generation">Synthetic Data Generation<a class="anchor-link" href="#Synthetic-Data-Generation">¶</a></h3><p>A synthetic dataset was generated to simulate bioimpedance behavior during dehydration and hydration phases.</p>
-<p>The dataset includes:
-    Time (time_s): represents a continuous recording
-    Bioimpedance (bioz): simulated electrical resistance values
-    Hydration state: labeled as 0 (dehydrated) and 1 (hydrated)</p>
-<p>The hydration state is defined based on time, where the first half of the dataset represents dehydration and the second half represents hydration.</p>
-<p>Bioimpedance values are generated such that:
-    Higher values correspond to dehydration
-    Lower values correspond to hydration</p>
-<p>This reflects the physiological expectation that hydration affects electrical conductivity in the body.</p>
+<h2 id="Machine-Learning-Model">Machine Learning Model<a class="anchor-link" href="#Machine-Learning-Model">¶</a></h2><p>A Random Forest classifier was used to predict hydration state based on bioimpedance values.</p>
+<p>Bioimpedance (<code>bioz</code>) was used as the sole input feature. This ensures the model learns from physiological signals rather than relying on time as a proxy for hydration status.</p>
+<p>The dataset was split into training and testing sets, with 80% used for training and 20% for evaluation.</p>
+<p>The Random Forest model was trained on the training data and then used to make predictions on the test set.</p>
+<h2 id="Model-Performance-Results">Model Performance Results<a class="anchor-link" href="#Model-Performance-Results">¶</a></h2><p>The model achieved an accuracy of approximately 98%, indicating strong performance in distinguishing between dehydrated and hydrated states.</p>
+<p>The classification report shows high precision, recall, and F1-scores for both classes, suggesting that the model performs consistently across both hydration states.</p>
+<p>These results demonstrate that bioimpedance alone is a strong predictor of hydration status in this synthetic dataset.</p>
+<p>It is important to note that this dataset is simulated, so real-world performance may vary depending on sensor quality, biological variability, and environmental factors.</p>
 </div>
 </div>
 </div>
@@ -7916,20 +7904,10 @@ weighted avg       0.98      0.98      0.98       100
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Machine-Learning-Model-Results">Machine Learning Model Results<a class="anchor-link" href="#Machine-Learning-Model-Results">¶</a></h3><p>A Random Forest classifier was trained to predict hydration state using time and bioimpedance as input features.</p>
-<p>The dataset was split into training and testing sets to evaluate model performance. The model achieved 100% accuracy, showing that the synthetic dataset contains a clear separation between dehydration and hydration conditions.</p>
-<p>This means the selected features can detect hydration state in the synthetic data, although the result is expected to be very strong because the dataset was generated in a controlled way.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Additional-Notes">Additional Notes<a class="anchor-link" href="#Additional-Notes">¶</a></h3><p>In this synthetic dataset, hydration state is defined using time to simulate a controlled experiment. This makes the dataset useful for testing the machine learning workflow, but it is simpler than real-world hydration data.</p>
+<h3 id="Additional-Notes">Additional Notes<a class="anchor-link" href="#Additional-Notes">¶</a></h3><p>In this synthetic dataset, hydration state is defined based on a simulated water intake event at a specific time point. This creates a controlled transition between dehydrated and hydrated states for modeling purposes.</p>
+<ul>
+<li>makes the dataset useful for testing the machine learning workflow, but it is simpler than real-world hydration data.</li>
+</ul>
 <p>In actual sensor data, hydration is not determined directly by time. Instead, it is reflected through physiological changes in bioimpedance.</p>
 </div>
 </div>
